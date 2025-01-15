@@ -63,6 +63,7 @@ const CarCard = ({_id, imageUrl,modelName, description,year,price, kmOdometer, c
         {/* Action Buttons */}
         <div className="flex space-x-2">
           <button
+          onClick={() => navigate(`/car-details/${_id}`)}
             className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm font-medium transition-colors duration-200"
           >
             Details

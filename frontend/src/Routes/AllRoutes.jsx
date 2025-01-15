@@ -5,6 +5,7 @@ import CarsPage from "../Pages/CarsPage";
 import PrivetRoute from "../PrivetRouter/PrivetRoute";
 import EditPage from "../Pages/EditPage";
 import AddCar from "../Pages/AddCar";
+import CarDetails from "../Pages/CarDetails";
 const AllRoutes = ({ showLogin, toggleForm }) => {
   return (
     <Routes>
@@ -33,6 +34,14 @@ const AllRoutes = ({ showLogin, toggleForm }) => {
         element={
           <PrivetRoute>
             <AddCar/>
+          </PrivetRoute>
+        }
+      />
+      <Route
+        path="/car-details/:id"
+        element={
+          <PrivetRoute>
+            <CarDetails/>
           </PrivetRoute>
         }
       />
