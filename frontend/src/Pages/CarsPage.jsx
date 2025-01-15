@@ -75,19 +75,6 @@ const InventoryPage = () => {
     );
   }
 
-  if (error) {
-    return (
-      <div className="text-center text-red-500 py-8">
-        {error}
-        <button
-          onClick={() => navigate("/l")}
-          className="block mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md"
-        >
-          Go to Login
-        </button>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -102,7 +89,10 @@ const InventoryPage = () => {
 </button>
       <h1 className="text-2xl font-bold mb-6">Dealer Inventory</h1>
       {inventory.length === 0 ? (
-        <p className="text-gray-600">No inventory found.</p>
+        <p className="text-center text-gray-600 py-8 text-lg font-medium flex flex-col items-center gap-2">
+        <span className="text-4xl">📦</span>
+        No inventory found. Please add car
+      </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {inventory.map((item) => (
