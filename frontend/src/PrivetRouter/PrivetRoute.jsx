@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContextProvider';
 
-import { Navigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContextProvider'
 
-const PrivetRoute = ({children}) => {
-    const {isLogin:{status}}=useContext(AuthContext)
+const PrivateRoute = ({ children }) => {
+  const { authToken } = useAuth();  // Access authToken from context
 
-    if(!status){
-        return <Navigate to="/"/>
-    }
-    return children
-  
-}
+  if (!authToken) {
+    return <Navigate to="/" />;  // Redirect to home page if not logged in
+  }
 
-export default PrivetRoute
+  return children;  // Render children if the user is logged in
+};
+
+export default PrivateRoute;

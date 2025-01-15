@@ -3,13 +3,15 @@ import React, { useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import IsLoading from "./IsLoading";
-import { AuthContext } from "../context/AuthContextProvider";
+import { useAuth } from "../context/AuthContextProvider";
+
 
 const LoginForm = ({ toggleForm }) => {
   const navigate = useNavigate();
   const notify = () => toast("Login succsesfully");
-  const { loginStatus } = useContext(AuthContext);
-  const [login, setLogin] = useState({
+
+  const { login } = useAuth();
+  const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
@@ -19,15 +21,15 @@ const LoginForm = ({ toggleForm }) => {
 
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
-    setLogin({
-      ...login,
+    setLoginData({
+      ...loginData,
       [name]: value,
     });
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const { email, password } = login;
+    const { email, password } = loginData;
     try {
       setIsLoading(true);
       const response = await axios({
@@ -41,9 +43,9 @@ const LoginForm = ({ toggleForm }) => {
       });
 
       console.log(response.data.token);
+      localStorage.setItem("authToken", response.data.token);  // Persist token
+      login(response.data.token);
       notify();
-      loginStatus(response.data.token);
-      // localStorage.setItem("authToken", response.data.token);
 
       setTimeout(() => {
         setIsLoading(false);
@@ -56,7 +58,7 @@ const LoginForm = ({ toggleForm }) => {
     }
   };
 
-  const { email, password } = login;
+  const { email, password } = loginData;
 
   return (
     <>
