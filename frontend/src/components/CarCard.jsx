@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const CarCard = ({_id, imageUrl,modelName, description,year,price, kmOdometer, color, originalPaint,}) => {
-  console.log(_id);
+const CarCard = ({_id, imageUrl,modelName, description,year,price, kmOdometer, color, originalPaint, onDelete }) => {
   
   const navigate = useNavigate();
   // Ensure descriptions are formatted with periods
@@ -77,6 +76,7 @@ const CarCard = ({_id, imageUrl,modelName, description,year,price, kmOdometer, c
           </button>
 
           <button
+          onClick={() => onDelete(_id)}
             className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md text-sm font-medium transition-colors duration-200"
           >
             Delete

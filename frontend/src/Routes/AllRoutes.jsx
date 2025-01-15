@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import CarsPage from "../Pages/CarsPage";
 import PrivetRoute from "../PrivetRouter/PrivetRoute";
 import EditPage from "../Pages/EditPage";
+import AddCar from "../Pages/AddCar";
 const AllRoutes = ({ showLogin, toggleForm }) => {
   return (
     <Routes>
@@ -24,6 +25,14 @@ const AllRoutes = ({ showLogin, toggleForm }) => {
         element={
           <PrivetRoute>
             <EditPage/>
+          </PrivetRoute>
+        }
+      />
+      <Route
+        path="/add_car"
+        element={
+          <PrivetRoute>
+            <AddCar/>
           </PrivetRoute>
         }
       />
