@@ -34,7 +34,7 @@ const LoginForm = ({ toggleForm }) => {
       setIsLoading(true);
       const response = await axios({
         method: "POST",
-        url: `http://localhost:8080/login`,
+        url: `https://buyc-attryb-assignment.onrender.com/login`,
         headers: { "Content-Type": "application/json" },
         data: {
           email: email,

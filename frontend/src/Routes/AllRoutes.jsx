@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../Pages/Home";
 import CarsPage from "../Pages/CarsPage";
 import PrivetRoute from "../PrivetRouter/PrivetRoute";
+import EditPage from "../Pages/EditPage";
 const AllRoutes = ({ showLogin, toggleForm }) => {
   return (
     <Routes>
@@ -18,6 +19,15 @@ const AllRoutes = ({ showLogin, toggleForm }) => {
           </PrivetRoute>
         }
       />
+      <Route
+        path="/edit_cars/:id"
+        element={
+          <PrivetRoute>
+            <EditPage/>
+          </PrivetRoute>
+        }
+      />
+
     </Routes>
   );
 };

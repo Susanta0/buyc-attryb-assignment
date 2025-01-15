@@ -36,6 +36,26 @@ inventoryRouter.post("/inventory",userValidation , async(req, res)=> {
     
 })
 
+inventoryRouter.get('/inventory/:id', userValidation, async (req, res) => {
+  const { id } = req.params; // Get the car ID from the request parameters
+
+  try {
+    const car = await inventoryModel.findById(id); 
+
+    if (!car) {
+      return res.status(404).json({ message: 'Car not found' });
+    }
+    if (car.dealerId.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: 'You are not authorized to view this car.' });
+    }
+
+    
+    res.status(200).json(car);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 inventoryRouter.get('/inventory', userValidation, async (req, res) => {
   try {

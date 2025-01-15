@@ -34,7 +34,7 @@ const SignupForm = ({toggleForm}) => {
       try {
         const response = await axios({
           method: "POST",
-          url: `http://localhost:8080/signup`,
+          url: `hhttps://buyc-attryb-assignment.onrender.com/signup`,
           headers: { "Content-Type": "application/json" },
           data: {
             name: name,
